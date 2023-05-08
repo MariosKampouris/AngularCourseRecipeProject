@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Recipe } from '../../recipe.model';
-import { recipeService } from '../../recipe.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -9,14 +8,8 @@ import { recipeService } from '../../recipe.service';
 })
 export class RecipeItemComponent {
   @Input() recipe: Recipe;
-
-  constructor(private recipeService: recipeService){
-  }
+  @Input() index: number;
 
   ngOnInit(){
-  }
-
-  onSelected(){
-    this.recipeService.recipeSelected.emit(this.recipe);
   }
 }
