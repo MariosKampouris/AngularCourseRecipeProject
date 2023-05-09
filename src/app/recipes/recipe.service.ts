@@ -1,11 +1,12 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Recipe } from "./recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
 import { shoppingListService } from "../shopping-list/shopping-list.service";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class recipeService{
-    recipeSelected = new EventEmitter<Recipe>();
+    recipeSelected = new Subject<Recipe>();
 
     recipes: Recipe[] = [
         new Recipe('A Test Recipe', 'This is a test', 'https://www.cookipedia.co.uk/wiki/images/b/bf/Rock_salmon_with_garlic_and_coriander.jpg',[
