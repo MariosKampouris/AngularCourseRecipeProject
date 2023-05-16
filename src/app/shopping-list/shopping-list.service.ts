@@ -3,6 +3,7 @@ import { Ingredient } from "../shared/ingredient.model";
 
 export class shoppingListService{
     ingredientsChanged = new Subject<Ingredient[]>();
+    startedEditing = new Subject<number>();
 
     private ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
@@ -11,6 +12,10 @@ export class shoppingListService{
 
     getIngredients(){
         return this.ingredients.slice();
+    }
+
+    getIngredient(index: number){
+        return this.ingredients[index];
     }
 
     addIngredient(ingredient: Ingredient){
@@ -25,6 +30,4 @@ export class shoppingListService{
         this.ingredients.push(...ingredients); //spread operator ...
         this.ingredientsChanged.next(this.ingredients.slice());
     }
-
-
 }
