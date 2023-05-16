@@ -30,4 +30,14 @@ export class shoppingListService{
         this.ingredients.push(...ingredients); //spread operator ...
         this.ingredientsChanged.next(this.ingredients.slice());
     }
+
+    updateIngredient(index: number, newIngredient: Ingredient){
+        this.ingredients[index] = newIngredient;
+        this.ingredientsChanged.next(this.ingredients.slice());
+    }
+
+    deleteIngredient(index: number){
+        this.ingredients.splice(index, 1);
+        this.ingredientsChanged.next(this.ingredients.slice())
+    }
 }
