@@ -9,7 +9,7 @@ export class recipeService{
     recipeSelected = new Subject<Recipe>();
     recipesChanged = new Subject<Recipe[]>();
 
-    recipes: Recipe[] = [
+    /*recipes: Recipe[] = [
         new Recipe('A Test Recipe', 'This is a test', 'https://www.cookipedia.co.uk/wiki/images/b/bf/Rock_salmon_with_garlic_and_coriander.jpg',[
           new Ingredient('Meat', 1),
           new Ingredient('French Fries', 20)
@@ -18,7 +18,8 @@ export class recipeService{
           new Ingredient('Buns', 2),
           new Ingredient('Meat', 2)
         ] )
-      ];
+      ];*/
+      private recipes: Recipe[] = [];
 
       constructor(private slService: shoppingListService){
 
@@ -48,6 +49,11 @@ export class recipeService{
 
       deleteRecipe(index: number){
         this.recipes.splice(index, 1);
+        this.recipesChanged.next(this.recipes.slice());
+      }
+
+      setRecipes(recipes: Recipe[]){
+        this.recipes = recipes;
         this.recipesChanged.next(this.recipes.slice());
       }
 }
